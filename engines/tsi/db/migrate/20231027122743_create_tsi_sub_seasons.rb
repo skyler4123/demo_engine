@@ -1,0 +1,10 @@
+class CreateTsiSubSeasons < ActiveRecord::Migration[7.1]
+  def change
+    create_table :tsi_sub_seasons do |t|
+      t.string :name
+      t.integer :season_id
+
+      t.timestamps
+    end
+  end
+end

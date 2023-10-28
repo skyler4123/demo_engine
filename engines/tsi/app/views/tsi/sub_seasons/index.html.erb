@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Sub seasons</h1>
+
+<div id="sub_seasons">
+  <% @sub_seasons.each do |sub_season| %>
+    <%= render sub_season %>
+    <p>
+      <%= link_to "Show this sub season", sub_season %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New sub season", new_sub_season_path %>

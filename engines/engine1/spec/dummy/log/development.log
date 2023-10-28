@@ -1,0 +1,120 @@
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2023-10-28 05:21:04.390442', '2023-10-28 05:21:04.390446') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateEngine1Users (20231028051933)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "engine1_users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20231028051933') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-10-28 12:21:20 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/skyler/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/skyler/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | Allocations: 357)
+Completed 200 OK in 10ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 6571)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-10-28 12:21:24 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/engine1/users" for 127.0.0.1 at 2023-10-28 12:21:52 +0700
+Processing by Engine1::UsersController#index as HTML
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application
+  [1m[36mEngine1::User Load (0.1ms)[0m  [1m[34mSELECT "engine1_users".* FROM "engine1_users"[0m
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application (Duration: 3.2ms | Allocations: 1822)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 113.9ms | Allocations: 43879)
+Completed 200 OK in 133ms (Views: 114.8ms | ActiveRecord: 0.2ms | Allocations: 52782)
+
+
+Started GET "/engine1/users/new" for 127.0.0.1 at 2023-10-28 12:21:54 +0700
+Processing by Engine1::UsersController#new as HTML
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/new.html.erb within layouts/engine1/application
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_form.html.erb (Duration: 3.4ms | Allocations: 2284)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/new.html.erb within layouts/engine1/application (Duration: 3.9ms | Allocations: 2586)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 5.0ms | Allocations: 3573)
+Completed 200 OK in 13ms (Views: 5.4ms | ActiveRecord: 0.5ms | Allocations: 9892)
+
+
+Started POST "/engine1/users" for 127.0.0.1 at 2023-10-28 12:21:56 +0700
+Processing by Engine1::UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"sad;lka;ldf"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEngine1::User Create (1.2ms)[0m  [1m[32mINSERT INTO "engine1_users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "sad;lka;ldf"], ["created_at", "2023-10-28 05:21:56.688696"], ["updated_at", "2023-10-28 05:21:56.688696"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/engine1/users/1
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms | Allocations: 4442)
+
+
+Started GET "/engine1/users/1" for 127.0.0.1 at 2023-10-28 12:21:56 +0700
+Processing by Engine1::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEngine1::User Load (0.1ms)[0m  [1m[34mSELECT "engine1_users".* FROM "engine1_users" WHERE "engine1_users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/show.html.erb within layouts/engine1/application
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_user.html.erb (Duration: 0.2ms | Allocations: 139)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/show.html.erb within layouts/engine1/application (Duration: 2.4ms | Allocations: 1148)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 3.3ms | Allocations: 2132)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.1ms | Allocations: 4318)
+
+
+Started GET "/engine1/users" for 127.0.0.1 at 2023-10-28 12:21:58 +0700
+Processing by Engine1::UsersController#index as HTML
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application
+  [1m[36mEngine1::User Load (0.1ms)[0m  [1m[34mSELECT "engine1_users".* FROM "engine1_users"[0m
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_user.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application (Duration: 3.0ms | Allocations: 1548)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 4.7ms | Allocations: 2536)
+Completed 200 OK in 5ms (Views: 5.0ms | ActiveRecord: 0.1ms | Allocations: 2771)
+
+
+Started GET "/engine1/users/new" for 127.0.0.1 at 2023-10-28 12:22:01 +0700
+Processing by Engine1::UsersController#new as HTML
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/new.html.erb within layouts/engine1/application
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_form.html.erb (Duration: 0.9ms | Allocations: 603)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/new.html.erb within layouts/engine1/application (Duration: 1.1ms | Allocations: 697)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 2.1ms | Allocations: 1684)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 1924)
+
+
+Started POST "/engine1/users" for 127.0.0.1 at 2023-10-28 12:22:04 +0700
+Processing by Engine1::UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"sahjdadshfuj"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mEngine1::User Create (1.1ms)[0m  [1m[32mINSERT INTO "engine1_users" ("name", "created_at", "updated_at") VALUES (?, ?, ?) RETURNING "id"[0m  [["name", "sahjdadshfuj"], ["created_at", "2023-10-28 05:22:04.412795"], ["updated_at", "2023-10-28 05:22:04.412795"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/engine1/users/2
+Completed 302 Found in 4ms (ActiveRecord: 1.2ms | Allocations: 3472)
+
+
+Started GET "/engine1/users/2" for 127.0.0.1 at 2023-10-28 12:22:04 +0700
+Processing by Engine1::UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEngine1::User Load (0.1ms)[0m  [1m[34mSELECT "engine1_users".* FROM "engine1_users" WHERE "engine1_users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/show.html.erb within layouts/engine1/application
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_user.html.erb (Duration: 0.0ms | Allocations: 15)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/show.html.erb within layouts/engine1/application (Duration: 4.6ms | Allocations: 531)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 6.0ms | Allocations: 1539)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.1ms | Allocations: 2673)
+
+
+Started GET "/engine1/users" for 127.0.0.1 at 2023-10-28 12:22:06 +0700
+Processing by Engine1::UsersController#index as HTML
+  Rendering layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb
+  Rendering /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application
+  [1m[36mEngine1::User Load (0.1ms)[0m  [1m[34mSELECT "engine1_users".* FROM "engine1_users"[0m
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_user.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/_user.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered /home/skyler/Documents/Rails/engine1/app/views/engine1/users/index.html.erb within layouts/engine1/application (Duration: 3.1ms | Allocations: 1677)
+  Rendered layout /home/skyler/Documents/Rails/engine1/app/views/layouts/engine1/application.html.erb (Duration: 4.5ms | Allocations: 2665)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.1ms | Allocations: 2896)
+
+
